@@ -27,7 +27,6 @@ class BlocCounterScreen extends StatelessWidget {
             }
           ),
           const SizedBox(height: 15),
-          const SizedBox(height: 15),
           FloatingActionButton(
             heroTag: '3',
             child: const Text('-1'),
