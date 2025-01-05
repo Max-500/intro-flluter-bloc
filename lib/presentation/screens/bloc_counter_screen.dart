@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intro_flutter_bloc/presentation/blocs/counter_bloc/counter_bloc.dart';
 
 class BlocCounterScreen extends StatelessWidget {
   const BlocCounterScreen({super.key});
@@ -8,13 +10,13 @@ class BlocCounterScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Bloc Counter Screen'),
+        title: BlocBuilder<CounterBloc, CounterState>(builder: (context, state) => Text('Bloc Counter Screen #${state.transactionCount}')),
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.refresh_rounded))
+          IconButton(onPressed: () => context.read<CounterBloc>().add(CounterReset()), icon: const Icon(Icons.refresh_rounded))
         ],
       ),
       body: Center(
-        child: Text('Counter Value: '),
+        child: context.select((CounterBloc counterBloc) => Text('Counter Value: ${counterBloc.state.counter}')),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -22,17 +24,13 @@ class BlocCounterScreen extends StatelessWidget {
           FloatingActionButton(
             heroTag: '1',
             child: const Text('+1'),
-            onPressed: () {
-
-            }
+            onPressed: () => context.read<CounterBloc>().add(const CounterIncreased(1))
           ),
           const SizedBox(height: 15),
           FloatingActionButton(
             heroTag: '3',
             child: const Text('-1'),
-            onPressed: () {
-
-            }
+            onPressed: () => context.read<CounterBloc>().add(const CounterDecreased(1))
           )
         ],
       ),
