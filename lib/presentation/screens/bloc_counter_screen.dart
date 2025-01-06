@@ -12,7 +12,7 @@ class BlocCounterScreen extends StatelessWidget {
         centerTitle: true,
         title: BlocBuilder<CounterBloc, CounterState>(builder: (context, state) => Text('Bloc Counter Screen #${state.transactionCount}')),
         actions: [
-          IconButton(onPressed: () => context.read<CounterBloc>().add(CounterReset()), icon: const Icon(Icons.refresh_rounded))
+          IconButton(onPressed: () => context.read<CounterBloc>().add(const CounterReset()), icon: const Icon(Icons.refresh_rounded))
         ],
       ),
       body: Center(

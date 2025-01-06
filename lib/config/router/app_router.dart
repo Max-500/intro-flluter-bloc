@@ -8,7 +8,8 @@ class AppRouter {
   static Map<String, Widget Function(BuildContext context)> routes = {
     '/' : (BuildContext context) => const HomeScreen(),
     '/cubits': (BuildContext context) => const CubitCounterScreen(),
-    '/blocs': (BuildContext context) => const BlocCounterScreen()
+    '/blocs': (BuildContext context) => const BlocCounterScreen(),
+    '/new-user': (BuildContext context) => const RegisterScreen()
   };
 
 }
